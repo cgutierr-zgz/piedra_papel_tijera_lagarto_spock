@@ -15,8 +15,10 @@ jobs:
           channel: 'stable'
       - run: flutter pub get
       - run: flutter build web
-      - uses: JamesIves/github-pages-deploy-action@releases/v3
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: gh-pages
-          FOLDER: build/web
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./build/web
